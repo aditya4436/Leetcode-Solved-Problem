@@ -1,0 +1,23 @@
+    int romanToInt(string s) {
+        int sum=0;
+        unordered_map<char, int> n;
+        n['I']=1;
+        n['V']=5;
+        n['X']=10;
+        n['L']=50;
+        n['C']=100;
+        n['D']=500;
+        n['M']=1000;
+        for(int i=0; i<s.size(); i++)
+        {
+            if(n[s[i]]<n[s[i+1]])
+            {
+                sum-=n[s[i]];
+            }
+            else
+            {
+                sum+=n[s[i]];
+            }
+        }
+        return sum;
+    }

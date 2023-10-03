@@ -1,0 +1,16 @@
+bool isPalindrome(int x) 
+{
+    long long reversed=0;
+    long long n=x;
+    if(x<0)
+    {
+        return false;
+    }
+    while(n!=0)
+    {
+        int num=n%10;
+        reversed=(reversed*10)+num;
+        n/=10;
+    }
+    return (reversed==x);
+}

@@ -1,3 +1,4 @@
+/*It is a recursive approach below this there is iterative approach*/
 class Solution
 {
 public:
@@ -21,5 +22,57 @@ public:
             list2->next=mergeTwoLists(list1, list2->next);
             return list2;
         }
+    }
+};
+
+
+/*Iterative approach*/
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2)
+    {
+        if(list1==nullptr)
+        {
+            return list2;
+        }
+        else if(list2==nullptr)
+        {
+            return list1;
+        }
+        ListNode *ptr=list1;
+        if(list1->val>list2->val)
+        {
+            ptr=list2;
+            list2=list2->next;
+        }
+        else
+        {
+            ptr=list1;
+            list1=list1->next;
+        }
+        ListNode *current=ptr;
+        while(list1 && list2)
+        {
+            if(list1->val<list2->val)
+            {
+                current->next=list1;
+                list1=list1->next;
+            }
+            else
+            {
+                current->next=list2;
+                list2=list2->next;
+            }
+            current=current->next;
+        }
+        if(!list1)
+        {
+            current->next=list2;
+        }
+        else
+        {
+            current->next=list1;
+        }
+        return ptr;
     }
 };

@@ -1,0 +1,19 @@
+void Inorder_Traversal(TreeNode *root, vector<int> &result)
+{
+    if(root==nullptr)
+    {
+        return;
+    }
+    else
+    {
+        Inorder_Traversal(root->left, result);
+        result.push_back(root->val);
+        Inorder_Traversal(root->right, result);
+    }
+}
+vector<int> inorderTraversal(TreeNode* root)
+{
+    vector<int> ans;
+    Inorder_Traversal(root, ans);
+    return ans;
+}

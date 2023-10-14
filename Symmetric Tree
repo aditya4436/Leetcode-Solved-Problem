@@ -1,4 +1,4 @@
-bool Is_Symmetric(TreeNode *left, TreeNode *right)
+bool Is_Same_Tree(TreeNode *left, TreeNode *right)
 {
     if(left==NULL && right==NULL)
     {
@@ -10,7 +10,7 @@ bool Is_Symmetric(TreeNode *left, TreeNode *right)
     }
     else if(left->val==right->val)
     {
-        return Is_Symmetric(left->left, right->right) && Is_Symmetric(left->right, right->left);
+        return Is_Same_Tree(left->left, right->right) && Is_Same_Tree(left->right, right->left);
     }
     return false;
 }
@@ -20,5 +20,5 @@ bool isSymmetric(TreeNode* root)
     {
         return true;
     }
-    return Is_Symmetric(root->left, root->right);
+    return Is_Same_Tree(root->left, root->right);
 }

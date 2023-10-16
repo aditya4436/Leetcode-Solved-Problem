@@ -1,0 +1,29 @@
+bool Sum(TreeNode *root, int sum, int targetSum)
+{
+    if(!root->left && !root->right)
+    {
+        if(targetSum==(sum+root->val))
+            return true;
+        return false;
+    }
+    if(root->left)
+    {
+        if(Sum(root->left, sum+root->val, targetSum))
+            return true;
+    }
+    if(root->right)
+    {
+        if(Sum(root->right, sum+root->val, targetSum))
+            return true;
+    }
+    return false;
+}
+bool hasPathSum(TreeNode* root, int targetSum) 
+{
+    int sum=0;
+    if(!root)
+    {
+        return false;
+    }
+    return Sum(root, sum, targetSum);
+}

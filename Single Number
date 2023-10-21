@@ -1,0 +1,10 @@
+// We have used xor operator. In XOR if the two inputs are same it returns false else it returns true.
+int singleNumber(vector<int>& nums) 
+{
+    int single_number=0;
+    for(int num:nums)
+    {
+        single_number=single_number^num;
+    }
+    return single_number;
+}

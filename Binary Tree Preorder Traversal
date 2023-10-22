@@ -1,0 +1,22 @@
+vector<int> result;
+void Preorder_Traversal(TreeNode *root)
+{
+    result.push_back(root->val);
+    if(root->left)
+    {
+        Preorder_Traversal(root->left);
+    }
+    if(root->right)
+    {
+        Preorder_Traversal(root->right);
+    }
+}
+vector<int> preorderTraversal(TreeNode* root) 
+{
+    if(root==NULL)
+    {
+        return result;
+    }
+    Preorder_Traversal(root);
+    return result;
+}

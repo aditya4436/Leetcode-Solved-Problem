@@ -1,0 +1,12 @@
+string convertToTitle(int columnNumber) 
+{
+      string result="";
+      while(columnNumber>0)
+      {
+          int temp=(columnNumber-1)%26;
+          result.push_back('A'+temp);
+          columnNumber=(columnNumber-1)/26;
+      }
+      reverse(result.begin(), result.end());
+      return result;
+  }

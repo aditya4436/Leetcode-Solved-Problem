@@ -1,0 +1,26 @@
+bool isHappy(int n)
+{
+    int index;
+    int val=0;
+    while(1)
+    {
+        while(n>0)
+        {
+            index=n%10;
+            val+=index*index;
+            n/=10;
+        }
+        if(val==1 || val/10==0 && val!=7)
+        {
+            break;
+        }
+        n=val;
+        val=0;
+        
+    }
+    if(val==1)
+    {
+        return true;
+    }
+    return false;
+}

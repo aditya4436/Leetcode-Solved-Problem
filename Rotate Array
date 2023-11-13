@@ -1,0 +1,11 @@
+void rotate(vector<int>& arr, int k)
+{
+if(arr.size()==0)
+{
+    return;
+}
+k=k%arr.size();
+reverse(arr.begin() + (arr.size()-k), arr.end());
+reverse(arr.begin(), arr.begin() + arr.size()-k);
+reverse(arr.begin(), arr.end());
+}

@@ -1,0 +1,27 @@
+int longestConsecutive(vector<int>& arr)
+{
+    sort(arr.begin(), arr.end());
+    int n=arr.size();
+    int maximum=1;
+    int lastElement=INT_MIN;
+    int count=0;
+    if(n==0)
+    {
+        return 0;
+    }
+    for(int i=0; i<n; i++)
+    {
+        if(arr[i]==lastElement+1)
+        {
+            count++;
+            lastElement=arr[i];
+        }
+        else if(arr[i]!=lastElement)
+        {
+            count=1;
+            lastElement=arr[i];
+        }
+        maximum=max(count, maximum);
+    }
+    return maximum;
+}

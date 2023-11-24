@@ -1,19 +1,22 @@
-vector<vector<int>> generate(int numRows) 
+vector<int> GetRow(int row)
 {
-    if(numRows==0)
+    vector<int> ans;
+    int res=1;
+    ans.push_back(res);
+    for(int i=1; i<row; i++)
     {
-        return {};
+        res=res*(row-i);
+        res=res/(i);
+        ans.push_back(res);
     }
-    else if(numRows==1)
+    return ans;
+}
+vector<vector<int>> generate(int numRows)
+{
+    vector<vector<int>> ans;
+    for(int i=1; i<=numRows; i++)
     {
-        return {{1}};
+        ans.push_back(GetRow(i));
     }
-    vector<vector<int>> prevRows=generate(numRows-1);
-    vector<int> newRow(numRows, 1);
-    for(int i=1; i<numRows-1; i++)
-    {
-        newRow[i]=prevRows.back()[i-1]+prevRows.back()[i];
-    }
-    prevRows.push_back(newRow);
-    return prevRows;
+    return ans;
 }

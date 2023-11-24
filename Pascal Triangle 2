@@ -1,16 +1,19 @@
-vector<int> getRow(int rowIndex) 
+int nCr(int row, int col)
 {
-  vector<int> row(1, 1);
-  for(int i=0; i<rowIndex; i++)
-  {
-      vector<int> newRow;
-      newRow.push_back(1);
-      for(int j=1; j<row.size(); j++)
-      {
-          newRow.push_back(row[j-1]+row[j]);
-      }
-      newRow.push_back(1);
-      row=newRow;
-  }
-  return row;
+    long long res=1;
+    for(int i=0; i<col; i++)
+    {
+        res=res*(row-i);
+        res=res/(i+1);
+    }
+    return res;
+}
+vector<int> getRow(int row)
+{
+    vector<int> ans;
+    for(int i=0; i<=row; i++)
+    {
+        ans.push_back(nCr(row, i));
+    }
+    return ans;
 }

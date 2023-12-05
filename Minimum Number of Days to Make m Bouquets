@@ -1,0 +1,47 @@
+bool IsPossible(vector<int> &arr, int day, int k, int m){
+    int result=0, count=0;
+    for(int i=0; i<arr.size(); i++){
+        if(arr[i]<=day){
+            count++;
+        }
+        else{
+            result+=(count/k);
+            count=0;
+        }
+    }
+    result+=(count/k);
+    if(result>=m){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+int Minimum(vector<int> &arr){
+    int minimum=INT_MAX;
+    for(int i=0; i<arr.size(); i++){
+        minimum=min(arr[i], minimum);
+    }
+    return minimum;
+}
+int Maximum(vector<int> &arr){
+    int maximum=INT_MIN;
+    for(int i=0; i<arr.size(); i++){
+        maximum=max(arr[i], maximum);
+    }
+    return maximum;
+}
+int minDays(vector<int>& arr, int m, int k) {
+    int low=Minimum(arr), high=Maximum(arr), ans=-1;
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(IsPossible(arr, mid, k, m)){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }   
+    return ans;
+}

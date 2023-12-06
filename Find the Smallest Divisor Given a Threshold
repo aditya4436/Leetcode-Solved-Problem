@@ -1,0 +1,36 @@
+ int Divide(vector<int> &arr, int threshold){
+    int ans=0;
+    for(int i=0; i<arr.size(); i++){
+        ans+=ceil((double)(arr[i])/(double)(threshold));
+    }
+    return ans;
+}
+int Minimum(vector<int> &arr){
+    int minimum=INT_MAX;
+    for(int i=0; i<arr.size(); i++){
+        minimum=min(arr[i], minimum);
+    }
+    return minimum;
+}
+int Maximum(vector<int> &arr){
+    int maximum=INT_MIN;
+    for(int i=0; i<arr.size(); i++){
+        maximum=max(arr[i], maximum);
+    }
+    return maximum;
+}
+int smallestDivisor(vector<int>& arr, int threshold) {
+    int low=1, high=Maximum(arr), ans=-1;    
+    while(low<=high){
+        int mid=(low+high)/2;
+        int result=Divide(arr, mid);
+        if(result<=threshold){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+    return ans;
+}

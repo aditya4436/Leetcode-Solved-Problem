@@ -1,0 +1,30 @@
+int AllocatePages(vector<int> &arr, int pages){
+    int student=1, countPages=0;
+    for(int i=0; i<arr.size(); i++){
+        if(countPages+arr[i]<=pages){
+            countPages+=arr[i];
+        }
+        else{
+            student++;
+            countPages=arr[i];
+        }
+    }
+    return student;
+}
+int splitArray(vector<int>& arr, int student) {
+    if(student>arr.size()){
+         return -1;
+     }
+    int low=*max_element(arr.begin(), arr.end());
+    int high=accumulate(arr.begin(), arr.end(), 0);
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(AllocatePages(arr, mid)>student){
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+    return low;
+}

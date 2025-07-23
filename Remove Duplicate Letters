@@ -1,0 +1,45 @@
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        vector<int> lastIndex(26, -1);
+        vector<bool> present(26, false);
+
+        # This stores the last index of each character
+        for(int i = 0; i < s.size(); i++){
+            lastIndex[s[i] - 'a'] = i;
+        }
+
+        # This is where we solve the main problem
+        stack<char> st;
+        for(int i = 0; i < s.size(); i++){
+            char ch = s[i];
+            int idx = ch - 'a';
+
+            # If current character is not not present
+            if(present[idx] == false){
+                # We will check if the stack is not empty and the character at the top of the stack is 
+                # greater than current character and the last index of the stack top is greater than 
+                # current index.
+                while(!st.empty() && st.top() > ch && lastIndex[st.top() - 'a'] > i){
+                    present[st.top() - 'a'] = false;
+                    st.pop();
+                }
+
+                # Push the current character into the stack.
+                st.push(ch);
+
+                # Set present[idx] to true.
+                present[idx] = true;
+            }
+        }
+
+        string output = "";
+        while(!st.empty()){
+            output += st.top();
+            st.pop();
+        }
+
+        reverse(output.begin(), output.end());
+        return output;
+    }
+};
